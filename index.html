@@ -211,7 +211,7 @@ label.f{display:flex;flex-direction:column;gap:7px;font-size:13.5px;font-weight:
 .swatches button.on{box-shadow:0 0 0 3px var(--bg),0 0 0 5px var(--s)}
 
 /* ---------- sheets ---------- */
-.modal{position:fixed;inset:0;z-index:50;background:rgba(8,11,14,.5);display:flex;align-items:center;justify-content:center;padding:20px;
+.modal{position:fixed;inset:0;z-index:85;background:rgba(8,11,14,.5);display:flex;align-items:center;justify-content:center;padding:20px;
   -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);animation:fade .2s}
 .sheet{width:min(660px,100%);max-height:calc(100% - 24px);border-radius:var(--r-xl);background:var(--bg2);border:1px solid var(--line2);box-shadow:var(--shadow);
   display:flex;flex-direction:column;overflow:hidden;animation:rise .32s var(--ease)}
@@ -238,7 +238,7 @@ label.f{display:flex;flex-direction:column;gap:7px;font-size:13.5px;font-weight:
 .dt-acts{display:flex;flex-direction:column;gap:8px}
 .dt-acts .btn{justify-content:flex-start;height:52px;border-radius:var(--r-m)}
 .dt-acts .btn.primary{justify-content:center;font-size:16px}
-.improw{display:grid;grid-template-columns:64px 1fr 160px 90px;gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line)}
+.improw{display:grid;grid-template-columns:64px 1fr 210px 90px;gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line)}
 .improw .fi{width:64px;height:48px;border-radius:10px;background:var(--surface2);display:grid;place-items:center;color:var(--steel)}
 .improw .fn{grid-column:2/-1;font-size:12.5px;color:var(--steel);margin-top:-6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;order:5}
 .improw .inp{height:44px}
@@ -315,6 +315,69 @@ label.f{display:flex;flex-direction:column;gap:7px;font-size:13.5px;font-weight:
 .slide .sl-f{display:flex;gap:6%;margin-top:4.5%;padding-top:3%;border-top:1px solid rgba(255,255,255,.18);font-size:clamp(12px,1.35vw,18px);color:#AEBBC7}
 .slide .sl-f b{display:block;color:#fff;font-weight:650}
 .extfile{text-align:center;max-width:460px;color:#B9C5D0;padding:20px}
+/* annotation editor */
+#annot{position:fixed;inset:0;z-index:70;background:#0E1216;color:#fff;display:flex;flex-direction:column;user-select:none;-webkit-user-select:none;animation:fade .2s}
+.atop{display:flex;align-items:center;gap:10px;padding:calc(14px + var(--sat)) calc(14px + var(--sar)) 10px calc(14px + var(--sal));z-index:2}
+.atop .sp{flex:1}
+.atop .gbtn{background:rgba(30,36,43,.8);color:#fff;border-color:rgba(255,255,255,.1)}
+.atop .gbtn.solid{background:var(--accent);border-color:transparent}
+#astage{flex:1;min-height:0;display:flex;align-items:center;justify-content:center;padding:6px 18px 104px;touch-action:none}
+.awrap{position:relative;line-height:0;box-shadow:0 20px 70px rgba(0,0,0,.55);border-radius:3px;overflow:hidden}
+#acv{display:block;touch-action:none;cursor:crosshair}
+#acrop{position:absolute;border:2px dashed #fff;box-shadow:0 0 0 9999px rgba(8,11,14,.62);pointer-events:none}
+.adock{position:absolute;left:50%;bottom:calc(18px + var(--sab));transform:translateX(-50%);display:flex;align-items:center;gap:2px;padding:6px;border-radius:30px;max-width:calc(100% - 20px);overflow-x:auto;scrollbar-width:none;z-index:2}
+.adock::-webkit-scrollbar{display:none}
+.adock .vb{flex:none}
+.adock .sw{flex:none;width:30px;height:30px;border-radius:15px;background:var(--s);margin:0 4px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.3)}
+.adock .sw.on{box-shadow:0 0 0 2px #1E242B,0 0 0 4px #fff}
+.adock .sz{flex:none;width:40px;height:48px;display:grid;place-items:center;border-radius:14px}
+.adock .sz i{display:block;border-radius:50%;background:#fff}
+.adock .sz.on{background:rgba(255,255,255,.16)}
+.acropbar{position:absolute;left:50%;top:calc(80px + var(--sat));transform:translateX(-50%);display:flex;align-items:center;gap:8px;padding:6px 6px 6px 18px;border-radius:26px;font-weight:600;font-size:14px;z-index:3;white-space:nowrap}
+.acropbar .btn{height:38px}
+.ahint{position:absolute;left:50%;top:calc(80px + var(--sat));transform:translateX(-50%);padding:8px 16px;border-radius:20px;font-size:13.5px;font-weight:600;color:#D5DEE6;pointer-events:none;transition:opacity .4s;z-index:3}
+.sharepv{border-radius:var(--r-m);overflow:hidden;background:var(--thumb);max-height:260px;display:grid;place-items:center;margin-bottom:16px;box-shadow:0 0 0 1px var(--line)}
+.sharepv img{max-width:100%;max-height:260px;display:block}
+/* folders */
+.crumbs{display:flex;align-items:center;gap:2px;flex-wrap:wrap;color:var(--steel);font-weight:600;margin-bottom:4px}
+.crumbs button{height:36px;padding:0 8px;border-radius:10px;color:var(--steel);font-weight:600}
+.crumbs button:hover{color:var(--ink);background:var(--surface)}
+.crumbs .cur{color:var(--ink);padding:0 8px}
+.crumbs .sep{opacity:.5}
+.fhead .bar{height:6px;width:72px;border-radius:3px;background:var(--c);margin:10px 0 16px}
+.folders{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px}
+.fold{position:relative}
+.fold .fo{width:100%;display:flex;align-items:center;gap:14px;height:76px;padding:0 54px 0 14px;border-radius:var(--r-l);background:var(--surface);border:1px solid var(--line);text-align:left}
+.fold .fo:active{transform:scale(.985)}
+.fold .fi{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;background:color-mix(in srgb,var(--c) 20%,transparent);color:var(--c);flex:none}
+.fold .fi svg{width:24px;height:24px}
+.fold .fx{flex:1;min-width:0}
+.fold .fn{display:block;font-weight:650;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fold .fc{font-size:13px;color:var(--steel)}
+.fold .dots{position:absolute;right:8px;top:17px}
+.fold.add .fo{border-style:dashed;background:none;color:var(--ink2)}
+.fold.add .fi{background:var(--surface2);color:var(--ink2)}
+.chipset{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.chipset button{height:36px;padding:0 14px;border-radius:18px;background:var(--surface);font-weight:600;font-size:13.5px;border:1px solid var(--line);color:var(--ink2)}
+.loclist{display:flex;flex-direction:column;gap:6px}
+.loclist button{display:flex;align-items:center;gap:12px;min-height:50px;padding:6px 14px;border-radius:var(--r-m);background:var(--surface);border:1px solid var(--line);text-align:left;font-weight:600}
+.loclist button.on{border-color:var(--accent);background:color-mix(in srgb,var(--accent) 14%,var(--surface))}
+.loclist button .dot{width:10px;height:10px;border-radius:5px;background:var(--c);flex:none}
+.loclist button svg{color:var(--steel);width:18px;height:18px}
+/* pin keypad */
+.pinsub{margin:0;color:var(--steel);text-align:center}
+.pdots{display:flex;gap:18px;justify-content:center;margin:22px 0 6px}
+.pdots i{width:16px;height:16px;border-radius:8px;border:2px solid var(--line2);transition:.15s}
+.pdots i.on{background:var(--accent);border-color:var(--accent)}
+.pdots.err i{border-color:#FF6B5E}
+.pdots.shake{animation:shake .4s}
+@keyframes shake{20%,60%{transform:translateX(-10px)}40%,80%{transform:translateX(10px)}}
+.keypad{display:grid;grid-template-columns:repeat(3,76px);gap:14px 22px;justify-content:center;margin:22px auto 6px}
+.keypad button{width:76px;height:76px;border-radius:38px;background:var(--surface2);font-size:30px;font-weight:600;font-stretch:112%;display:grid;place-items:center;touch-action:manipulation}
+.keypad button:active{background:var(--accent);color:#fff}
+.keypad button.txt{background:none;font-size:15px;font-weight:600;color:var(--ink2)}
+.keypad button.txt:active{background:var(--surface2);color:var(--ink)}
+.pinmsg{text-align:center;min-height:22px;color:#FF6B5E;font-weight:600;font-size:14px}
 .extfile h3{color:#fff;font-size:24px;font-stretch:112%}
 </style>
 </head>
@@ -348,10 +411,26 @@ label.f{display:flex;flex-direction:column;gap:7px;font-size:13.5px;font-weight:
       <button class="vb pdfonly" data-v="zoomin" title="Inzoomen"><svg class="i"><use href="#i-plus"/></svg></button>
       <button class="vb pdfonly" data-v="pen" title="Markeerstift"><svg class="i"><use href="#i-pen"/></svg></button>
       <span class="vsep"></span>
+      <button class="vb capt" data-v="capture" title="Screenshot met notities"><svg class="i"><use href="#i-camera"/></svg></button>
       <button class="vb" data-v="share" title="Delen"><svg class="i"><use href="#i-share"/></svg></button>
       <button class="vb" data-v="fs" title="Volledig scherm"><svg class="i"><use href="#i-expand"/></svg></button>
     </div>
   </div>
+</div>
+
+<div id="annot" hidden>
+  <div class="atop">
+    <button class="vclose vglass" data-e="close" title="Sluiten"><svg class="i"><use href="#i-x"/></svg></button>
+    <div class="vtitle vglass"><b>Screenshot met notities</b><span id="aSub"></span></div>
+    <span class="sp"></span>
+    <button class="vclose vglass" data-e="undo" title="Ongedaan maken"><svg class="i"><use href="#i-undo"/></svg></button>
+    <button class="gbtn admin" data-e="save"><svg class="i"><use href="#i-download"/></svg><span class="lbl">Bewaren</span></button>
+    <button class="gbtn solid" data-e="share"><svg class="i"><use href="#i-mail"/></svg><span class="lbl">Mailen of delen</span></button>
+  </div>
+  <div id="astage"><div class="awrap"><canvas id="acv"></canvas><div id="acrop" hidden></div></div></div>
+  <div class="ahint vglass" id="aHint"></div>
+  <div class="acropbar vglass" id="aCropBar" hidden><span>Sleep over het deel dat je wilt houden</span><button class="btn sm ghost" data-e="cropno" style="color:#fff">Annuleren</button><button class="btn sm primary" data-e="cropok" disabled>Bijsnijden</button></div>
+  <div class="adock vglass" id="aDock"></div>
 </div>
 
 <div id="modal" class="modal" hidden></div>
@@ -388,6 +467,17 @@ label.f{display:flex;flex-direction:column;gap:7px;font-size:13.5px;font-weight:
   <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 4v11M7.5 10.5L12 15l4.5-4.5M5 19h14"/></symbol>
   <symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 15V4M7.5 8.5L12 4l4.5 4.5M5 19h14"/></symbol>
   <symbol id="i-open" viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></symbol>
+  <symbol id="i-folder" viewBox="0 0 24 24"><path d="M3.5 7.5a2 2 0 0 1 2-2h4l2 2.5h7a2 2 0 0 1 2 2v7.5a2 2 0 0 1-2 2h-13a2 2 0 0 1-2-2z"/></symbol>
+  <symbol id="i-move" viewBox="0 0 24 24"><path d="M3.5 7.5a2 2 0 0 1 2-2h4l2 2.5h7a2 2 0 0 1 2 2v7.5a2 2 0 0 1-2 2h-13a2 2 0 0 1-2-2zM10 13.5h6M13.5 11l2.5 2.5-2.5 2.5"/></symbol>
+  <symbol id="i-camera" viewBox="0 0 24 24"><path d="M4 8.5a2 2 0 0 1 2-2h2l1.5-2h5L16 6.5h2a2 2 0 0 1 2 2V17a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/><circle cx="12" cy="12.5" r="3.4"/></symbol>
+  <symbol id="i-crop" viewBox="0 0 24 24"><path d="M6.5 3v13.5H21M3 6.5h13.5V21"/></symbol>
+  <symbol id="i-rect" viewBox="0 0 24 24"><rect x="4" y="6" width="16" height="12" rx="1.5"/></symbol>
+  <symbol id="i-circle" viewBox="0 0 24 24"><ellipse cx="12" cy="12" rx="8.5" ry="7"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 19L19 5M10 5h9v9"/></symbol>
+  <symbol id="i-text" viewBox="0 0 24 24"><path d="M5 6.5V5h14v1.5M12 5v14M9 19h6"/></symbol>
+  <symbol id="i-marker" viewBox="0 0 24 24"><path d="M14.5 4.5l5 5-7.5 7.5H7v-5zM4 20h9" /></symbol>
+  <symbol id="i-undo" viewBox="0 0 24 24"><path d="M9 7L4.5 11.5 9 16M5 11.5h9.5a5 5 0 0 1 0 10H12"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3.5" y="5.5" width="17" height="13" rx="2.5"/><path d="M4 7l8 6 8-6"/></symbol>
   <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5z"/></symbol>
 </svg>
 
@@ -449,10 +539,33 @@ const DEFAULT_CATS = [
 ];
 const DEFAULT_SETTINGS = {
   company: "Entrepose Mills Benelux", tagline: "Schoortorens, steigers en trappentorens", accent: "#FF7A1A", logo: null, pin: "", theme: "dark",
-  contact: { name: "", role: "", phone: "", email: "", web: "" }, categories: DEFAULT_CATS
+  contact: { name: "", role: "", phone: "", email: "", web: "" }, categories: DEFAULT_CATS, folders: []
 };
-const S = { docs: [], pres: [], set: structuredClone(DEFAULT_SETTINGS), view: "library", cat: null, lang: "all", q: "", sort: "recent", presEdit: null, client: false };
+const S = { docs: [], pres: [], set: structuredClone(DEFAULT_SETTINGS), view: "library", cat: null, folder: null, lang: "all", q: "", sort: "recent", presEdit: null, client: false };
 const catOf = id => S.set.categories.find(c => c.id === id) || { id: "", name: "Overig", color: "#8592A0", desc: "" };
+/* ---------- folders ---------- */
+const folders = () => S.set.folders || (S.set.folders = []);
+const folderOf = id => id ? folders().find(f => f.id === id) : null;
+function folderPath(id) { const p = []; let f = folderOf(id), guard = 0; while (f && guard++ < 50) { p.unshift(f); f = folderOf(f.parent); } return p; }
+const byName = (a, b) => a.name.localeCompare(b.name, "nl", { numeric: true, sensitivity: "base" });
+function subFolders(cat, parent) { return folders().filter(f => f.cat === cat && (f.parent || null) === (parent || null)).sort(byName); }
+function descendantIds(id) { const out = [id]; folders().filter(f => f.parent === id).forEach(c => out.push(...descendantIds(c.id))); return out; }
+function countIn(cat, folderId) { const ids = folderId ? new Set(descendantIds(folderId)) : null; return S.docs.filter(d => d.category === cat && (!ids || ids.has(d.folder))).length; }
+const docFolder = d => folderOf(d.folder) ? d.folder : null;
+function locLabel(cat, folder) { return [catOf(cat).name, ...folderPath(folder).map(f => f.name)].join(" › "); }
+function locList() {
+  const out = [];
+  for (const c of S.set.categories) {
+    out.push({ cat: c.id, folder: null, depth: 0 });
+    const walk = (parent, depth) => subFolders(c.id, parent).forEach(f => { out.push({ cat: c.id, folder: f.id, depth }); walk(f.id, depth + 1); });
+    walk(null, 1);
+  }
+  return out;
+}
+const locOptions = (cat, folder) => locList().map(l => `<option value="${l.cat}|${l.folder || ""}" ${l.cat === cat && (l.folder || null) === (folder || null) ? "selected" : ""}>${esc(locLabel(l.cat, l.folder))}</option>`).join("");
+const parseLoc = v => { const [category, folder] = String(v).split("|"); return { category, folder: folder || null }; };
+const FOLDER_IDEAS = ["Technische fiches", "Brochures", "Attesten en certificaten", "Montagehandleidingen", "Prijslijsten", "Referenties", "Tekeningen", "Nederlands", "Français", "English"];
+
 const kindOf = (mime, name) => /pdf/.test(mime) || /\.pdf$/i.test(name) ? "pdf" : /^image\//.test(mime) ? "image" : /^video\//.test(mime) ? "video" : "other";
 const kindIcon = k => ({ pdf: "file", image: "image", video: "video" }[k] || "file");
 const kindLabel = d => d.kind === "pdf" ? (d.pages ? `PDF, ${d.pages} p.` : "PDF") : d.kind === "image" ? "Beeld" : d.kind === "video" ? "Video" : (d.name.split(".").pop() || "").toUpperCase();
@@ -540,10 +653,10 @@ const langOptions = sel => LANGS.map(l => `<option ${l === sel ? "selected" : ""
 function importDialog(files) {
   files = [...files]; if (!files.length) return;
   openModal(`<div class="sheet"><div class="hd"><h3>${files.length === 1 ? "Document toevoegen" : files.length + " documenten toevoegen"}</h3></div>
-    <div class="bd">${files.length > 1 ? `<label class="f" style="margin-bottom:6px">Zelfde categorie voor alles<select id="allCat" class="inp"><option value="">Per document kiezen</option>${catOptions("")}</select></label>` : ""}
+    <div class="bd">${files.length > 1 ? `<label class="f" style="margin-bottom:6px">Alles bewaren in<select id="allCat" class="inp"><option value="">Per document kiezen</option>${locOptions("", "")}</select></label>` : ""}
     ${files.map(f => `<div class="improw"><div class="fi">${ic(kindIcon(kindOf(f.type, f.name)))}</div>
       <input class="inp t" value="${esc(cleanTitle(f.name))}" placeholder="Titel" aria-label="Titel">
-      <select class="inp c" aria-label="Categorie">${catOptions(guessCat(f.name))}</select>
+      <select class="inp c" aria-label="Map">${S.cat && S.view === "library" ? locOptions(S.cat, S.folder) : locOptions(guessCat(f.name), null)}</select>
       <select class="inp l" aria-label="Taal">${langOptions(guessLang(f.name))}</select>
       <div class="fn">${esc(f.name)}, ${fmtSize(f.size)}</div></div>`).join("")}
       <div class="progress" hidden><i></i></div></div>
@@ -554,7 +667,7 @@ function importDialog(files) {
     const pr = $(".sheet .progress"); pr.hidden = false; const rows = $$(".improw");
     for (let i = 0; i < files.length; i++) {
       const f = files[i], r = rows[i];
-      await addDoc(f, { title: $(".t", r).value.trim() || cleanTitle(f.name), category: $(".c", r).value, lang: $(".l", r).value });
+      await addDoc(f, { title: $(".t", r).value.trim() || cleanTitle(f.name), ...parseLoc($(".c", r).value), lang: $(".l", r).value });
       $("i", pr).style.width = ((i + 1) / files.length * 100) + "%";
     }
     closeModal(); askPersist(); await reload(); toast(files.length === 1 ? "Document bewaard" : `${files.length} documenten bewaard`);
@@ -563,7 +676,7 @@ function importDialog(files) {
 async function addDoc(file, meta) {
   const kind = kindOf(file.type, file.name);
   const { thumb, pages, landscape } = await makeThumb(file, kind);
-  const d = { id: uid(), title: meta.title, category: meta.category, lang: meta.lang, desc: meta.desc || "", name: file.name || meta.title,
+  const d = { id: uid(), title: meta.title, category: meta.category, folder: meta.folder || null, lang: meta.lang, desc: meta.desc || "", name: file.name || meta.title,
     mime: file.type || "application/octet-stream", size: file.size, kind, thumb, pages, landscape, fav: false, added: Date.now(), opened: 0, last: 0 };
   await DB.put("blobs", file, d.id); await DB.put("docs", d); return d;
 }
@@ -598,7 +711,7 @@ function movePill(anim = true) {
   if (!anim) requestAnimationFrame(() => p.style.transition = "");
 }
 function go2(view) {
-  const prev = S.view; S.view = view; S.cat = null; S.q = "";
+  const prev = S.view; S.view = view; S.cat = null; S.folder = null; S.q = "";
   $$("#tabs button").forEach(b => b.classList.toggle("on", b.dataset.nav === view || (b.dataset.nav === "pres" && view === "presedit")));
   movePill(prev !== view); renderMain();
 }
@@ -609,7 +722,7 @@ function renderMain() {
   else if (S.view === "pres") m.innerHTML = viewPresList();
   else if (S.view === "presedit") m.innerHTML = viewPresEdit();
   else if (S.view === "settings") m.innerHTML = viewSettings();
-  if (S.view === "library" || S.view === "favs") { renderGrid(); const q = $("#q"); if (q) q.oninput = e => { S.q = e.target.value; renderGrid(); $("#shelfWrap") && ($("#shelfWrap").hidden = !!S.q); }; }
+  if (S.view === "library" || S.view === "favs") { renderGrid(); const q = $("#q"); if (q) q.oninput = e => { S.q = e.target.value; renderGrid(); $("#shelfWrap") && ($("#shelfWrap").hidden = !!S.q); $("#foldWrap") && ($("#foldWrap").hidden = !!S.q); const h = $(".toolbar h2"); if (h && S.cat) h.textContent = S.q ? "Zoekresultaten" : "Documenten"; }; }
   if (S.view === "settings") bindSettings();
   if (S.view === "presedit") bindPresEdit();
 }
@@ -618,7 +731,11 @@ function renderMain() {
 function filtered() {
   let d = S.docs;
   if (S.view === "favs") d = d.filter(x => x.fav);
-  if (S.cat) d = d.filter(x => x.category === S.cat);
+  if (S.cat) {
+    d = d.filter(x => x.category === S.cat);
+    if (S.q) { if (S.folder) { const ids = new Set(descendantIds(S.folder)); d = d.filter(x => ids.has(x.folder)); } }
+    else d = d.filter(x => docFolder(x) === (S.folder || null));
+  }
   if (S.lang !== "all") d = d.filter(x => x.lang === S.lang);
   if (S.q) { const q = S.q.toLowerCase(); d = d.filter(x => (x.title + " " + x.desc + " " + x.name + " " + catOf(x.category).name).toLowerCase().includes(q)); }
   const so = { recent: (a, b) => b.added - a.added, az: (a, b) => a.title.localeCompare(b.title, "nl"), used: (a, b) => (b.opened || 0) - (a.opened || 0) };
@@ -629,11 +746,23 @@ function viewLibrary() {
   const search = `<label class="search">${ic("search")}<input id="q" type="search" placeholder="Zoek op titel, product of trefwoord" value="${esc(S.q)}" aria-label="Zoeken"></label>`;
   let top;
   if (c) {
-    const n = S.docs.filter(d => d.category === c.id).length;
-    top = `<button class="back" data-cat="">${ic("left")} Alle productlijnen</button>
+    const f = folderOf(S.folder);
+    if (!f) {
+      const n = countIn(c.id, null);
+      top = `<button class="back" data-cat="">${ic("left")} Alle productlijnen</button>
       <section class="cathero" style="--c:${c.color}">${gridSvg(1)}<div class="bar"></div><div class="word">${esc(c.name)}</div>
       <div class="lede" style="color:var(--ink2)">${esc(c.desc)}${c.desc ? ", " : ""}${n} document${n === 1 ? "" : "en"}</div></section>
       <div class="head" style="margin-top:22px"><div class="ttl"></div>${search}</div>`;
+    } else {
+      const path = folderPath(f.id), n = countIn(c.id, f.id);
+      top = `<nav class="crumbs" aria-label="Locatie"><button data-cat="">Alle productlijnen</button><span class="sep">›</span><button data-folder="">${esc(c.name)}</button>
+        ${path.slice(0, -1).map(p => `<span class="sep">›</span><button data-folder="${p.id}">${esc(p.name)}</button>`).join("")}<span class="sep">›</span><span class="cur">${esc(f.name)}</span></nav>
+      <div class="head fhead" style="--c:${c.color};margin-top:6px"><div class="ttl"><div class="bar"></div><h1>${esc(f.name)}</h1><div class="lede">${n} document${n === 1 ? "" : "en"} in deze map${subFolders(c.id, f.id).length ? " en de submappen" : ""}</div></div>${search}</div>`;
+    }
+    const subs = subFolders(c.id, S.folder);
+    top += `<div id="foldWrap" ${S.q ? "hidden" : ""}>${subs.length ? `<h2>Mappen <span class="c">${subs.length}</span></h2>` : ""}<div class="folders" style="--c:${c.color}${subs.length ? "" : ";margin-top:8px"}">
+      ${subs.map(sf => { const k = countIn(c.id, sf.id), sk = subFolders(c.id, sf.id).length; return `<div class="fold"><button class="fo" data-folder="${sf.id}"><span class="fi">${ic("folder")}</span><span class="fx"><span class="fn">${esc(sf.name)}</span><span class="fc">${k} document${k === 1 ? "" : "en"}${sk ? `, ${sk} map${sk === 1 ? "" : "pen"}` : ""}</span></span></button><button class="dots ib admin" data-fmenu="${sf.id}" aria-label="Map beheren">${ic("more")}</button></div>`; }).join("")}
+      <div class="fold add admin"><button class="fo" data-act="newfolder"><span class="fi">${ic("plus")}</span><span class="fx"><span class="fn">${subs.length ? "Nieuwe map" : (S.folder ? "Submap maken" : "Map maken")}</span><span class="fc">${S.folder ? "In " + esc(f.name) : "Bijvoorbeeld Technische fiches"}</span></span></button></div></div></div>`;
   } else if (favs) {
     top = `<div class="head"><div class="ttl"><h1>Favorieten</h1><div class="lede">Wat je het vaakst toont, altijd binnen één tik.</div></div>${search}</div>`;
   } else {
@@ -654,7 +783,7 @@ function viewLibrary() {
     }
   }
   const langsUsed = LANGS.filter(l => S.docs.some(d => d.lang === l));
-  const bar = S.docs.length ? `<div class="toolbar"><h2>${c || favs ? "Documenten" : "Alle documenten"}</h2>
+  const bar = S.docs.length ? `<div class="toolbar"><h2>${c && S.q ? "Zoekresultaten" : c || favs ? "Documenten" : "Alle documenten"}</h2>
     ${langsUsed.length > 1 ? `<div class="seg" role="group" aria-label="Taal"><button class="${S.lang === "all" ? "on" : ""}" data-lang="all">Alle talen</button>${langsUsed.map(l => `<button class="${S.lang === l ? "on" : ""}" data-lang="${l}">${l}</button>`).join("")}</div>` : ""}
     <select class="plain" id="sort" aria-label="Sorteren"><option value="recent">Nieuwste eerst</option><option value="az">Titel A tot Z</option><option value="used">Meest getoond</option></select></div>` : "";
   return top + bar + `<div id="grid"></div>`;
@@ -666,7 +795,7 @@ function cardHtml(d) {
       <span class="kind">${kindLabel(d)}</span></button>
     <button class="fav ${d.fav ? "on" : ""}" data-fav="${d.id}" aria-label="Favoriet">${ic("star")}</button>
     <div class="info"><div class="tx"><button class="t" data-open="${d.id}" style="text-align:left">${esc(d.title)}</button>
-      <div class="m"><span class="tag c">${esc(c.name)}</span><span class="tag">${d.lang}</span></div></div>
+      <div class="m">${S.cat ? "" : `<span class="tag c">${esc(c.name)}</span>`}${folderOf(d.folder) && (!S.cat || S.q) ? `<span class="tag">${esc(folderOf(d.folder).name)}</span>` : ""}<span class="tag">${d.lang}</span></div></div>
       <button class="dots" data-more="${d.id}" aria-label="Details">${ic("more")}</button></div></div>`;
 }
 function renderGrid() {
@@ -676,6 +805,8 @@ function renderGrid() {
   if (!S.docs.length) {
     g.innerHTML = `<div class="empty">${gridSvg(0)}<h3>Je bibliotheek is nog leeg</h3><div>Voeg brochures, productfiches, attesten, foto's en video's toe.<br>Ze worden op deze iPad bewaard en werken ook zonder internet.</div>
       <div class="acts"><button class="btn primary admin" data-act="import">${ic("plus")} Documenten toevoegen</button>${DEMO ? `<button class="btn admin" data-act="demo">Voorbeelden laden</button>` : ""}</div></div>`;
+  } else if (!d.length && S.cat && !S.q) {
+    g.innerHTML = `<div class="empty"><h3>${S.folder ? "Deze map is nog leeg" : "Nog geen losse documenten"}</h3><div>${S.folder ? "Voeg documenten toe, ze komen meteen in deze map terecht." : "Documenten die je hier toevoegt, staan in de categorie zelf en niet in een map."}</div><div class="acts"><button class="btn primary admin" data-act="import">${ic("plus")} Documenten toevoegen</button></div></div>`;
   } else if (!d.length) {
     g.innerHTML = `<div class="empty"><h3>${S.view === "favs" && !S.q ? "Nog geen favorieten" : "Geen resultaten"}</h3><div>${S.view === "favs" && !S.q ? "Tik op de ster bij een document om het hier te bewaren." : "Probeer een ander zoekwoord of kies een andere taal."}</div></div>`;
   } else g.innerHTML = `<div class="grid">${d.map(cardHtml).join("")}</div>`;
@@ -688,10 +819,11 @@ function docMenu(id) {
     <div class="dt-prev">${d.thumb ? `<img src="${d.thumb}" alt="">` : ic(kindIcon(d.kind))}</div>
     <div class="dt-body"><h3>${esc(d.title)}</h3><div class="m"><span class="tag c">${esc(c.name)}</span><span class="tag">${d.lang}</span><span class="tag">${kindLabel(d)}</span></div>
       ${d.desc ? `<div class="desc">${esc(d.desc)}</div>` : ""}
-      <div class="facts"><span>Bestand</span><b>${esc(d.name)}</b><span>Grootte</span><b>${fmtSize(d.size)}</b><span>Toegevoegd</span><b>${fmtDate(d.added)}</b><span>Getoond</span><b>${d.opened || 0} keer</b></div>
+      <div class="facts"><span>Locatie</span><b>${esc(locLabel(d.category, docFolder(d)))}</b><span>Bestand</span><b>${esc(d.name)}</b><span>Grootte</span><b>${fmtSize(d.size)}</b><span>Toegevoegd</span><b>${fmtDate(d.added)}</b><span>Getoond</span><b>${d.opened || 0} keer</b></div>
       <div class="dt-acts">
         <button class="btn primary" data-a="open">${ic("play")} Presenteren</button>
         <button class="btn" data-a="share">${ic("share")} Delen met klant</button>
+        <button class="btn admin" data-a="move">${ic("move")} Verplaatsen naar andere map</button>
         <button class="btn admin" data-a="topres">${ic("list")} Toevoegen aan presentatie</button>
         <button class="btn admin" data-a="edit">${ic("edit")} Gegevens bewerken</button>
         <button class="btn" data-a="ext">${ic("open")} Openen in andere app</button>
@@ -703,6 +835,7 @@ function docMenu(id) {
     if (a === "ext") openExternal(d);
     if (a === "edit") editDoc(d);
     if (a === "topres") addToPresDialog([id]);
+    if (a === "move") moveDialog(d);
     if (a === "del") {
       if (await confirmBox("Document verwijderen?", `“${d.title}” wordt van deze iPad verwijderd en uit alle presentaties gehaald.`, "Verwijderen")) {
         await DB.del("docs", id); await DB.del("blobs", id);
@@ -715,11 +848,104 @@ function docMenu(id) {
 function editDoc(d) {
   openModal(`<div class="sheet"><div class="hd"><h3>Gegevens bewerken</h3></div><div class="bd"><div class="form">
     <label class="f full">Titel<input id="eT" value="${esc(d.title)}"></label>
-    <label class="f">Categorie<select id="eC">${catOptions(d.category)}</select></label>
+    <label class="f">Map<select id="eC">${locOptions(d.category, docFolder(d))}</select></label>
     <label class="f">Taal<select id="eL">${langOptions(d.lang)}</select></label>
     <label class="f full">Notities<textarea id="eD" placeholder="Bijvoorbeeld versie, geldigheid of voor welke klanten">${esc(d.desc)}</textarea></label></div></div>
     <div class="ft"><button class="btn ghost" data-close>Annuleren</button><button class="btn primary" id="eSave">Wijzigingen bewaren</button></div></div>`);
-  $("#eSave").onclick = async () => { Object.assign(d, { title: $("#eT").value.trim() || d.title, category: $("#eC").value, lang: $("#eL").value, desc: $("#eD").value }); await DB.put("docs", d); closeModal(); await reload(); toast("Wijzigingen bewaard"); };
+  $("#eSave").onclick = async () => { Object.assign(d, { title: $("#eT").value.trim() || d.title, ...parseLoc($("#eC").value), lang: $("#eL").value, desc: $("#eD").value }); await DB.put("docs", d); closeModal(); await reload(); toast("Wijzigingen bewaard"); };
+}
+function moveDialog(d) {
+  const cur = `${d.category}|${docFolder(d) || ""}`;
+  openModal(`<div class="sheet"><div class="hd"><h3>Verplaatsen naar</h3><button class="ib" data-close aria-label="Sluiten">${ic("x")}</button></div><div class="bd"><div class="loclist">
+    ${locList().map(l => { const v = `${l.cat}|${l.folder || ""}`; const name = l.folder ? folderOf(l.folder).name : catOf(l.cat).name;
+      return `<button data-loc="${v}" class="${v === cur ? "on" : ""}" style="--c:${catOf(l.cat).color};margin-left:${l.depth * 22}px">${l.folder ? ic("folder") : '<span class="dot"></span>'}${esc(name)}</button>`; }).join("")}</div></div></div>`);
+  $("#modal .loclist").onclick = async e => {
+    const b = e.target.closest("[data-loc]"); if (!b) return;
+    Object.assign(d, parseLoc(b.dataset.loc)); await DB.put("docs", d); closeModal(); await reload(); toast(`Verplaatst naar ${locLabel(d.category, d.folder)}`);
+  };
+}
+function folderDialog({ title, value = "", ok, ideas = false }) {
+  return new Promise(res => {
+    openModal(`<div class="sheet sm"><div class="hd"><h3>${esc(title)}</h3></div><div class="bd">
+      <label class="f">Naam van de map<input id="fN" class="inp" value="${esc(value)}" placeholder="Bijvoorbeeld Technische fiches" autocomplete="off"></label>
+      ${ideas ? `<div class="chipset">${FOLDER_IDEAS.map(i => `<button data-idea="${esc(i)}">${esc(i)}</button>`).join("")}</div>` : ""}</div>
+      <div class="ft"><button class="btn ghost" id="fNo">Annuleren</button><button class="btn primary" id="fOk">${esc(ok)}</button></div></div>`);
+    const inp = $("#fN"); setTimeout(() => inp.focus(), 80);
+    $("#modal .chipset") && ($("#modal .chipset").onclick = e => { const b = e.target.closest("[data-idea]"); if (b) { inp.value = b.dataset.idea; inp.focus(); } });
+    const done = () => { const v = inp.value.trim(); if (!v) { inp.focus(); return; } closeModal(); res(v); };
+    $("#fOk").onclick = done; inp.onkeydown = e => e.key === "Enter" && done(); $("#fNo").onclick = () => { closeModal(); res(null); };
+  });
+}
+async function newFolder(cat, parent) {
+  const name = await folderDialog({ title: parent ? `Submap in ${folderOf(parent).name}` : `Nieuwe map in ${catOf(cat).name}`, ok: "Map maken", ideas: true });
+  if (!name) return;
+  folders().push({ id: uid(), cat, parent: parent || null, name, created: Date.now() }); await saveSettings(); renderMain(); toast(`Map “${name}” gemaakt`);
+}
+function folderMenu(id) {
+  const f = folderOf(id); if (!f) return; const c = catOf(f.cat);
+  openModal(`<div class="sheet sm"><div class="hd"><h3>${esc(f.name)}</h3><button class="ib" data-close aria-label="Sluiten">${ic("x")}</button></div><div class="bd">
+    <p style="margin:0 0 14px;color:var(--steel)">${esc(locLabel(f.cat, f.id))}</p><div class="dt-acts">
+    <button class="btn" data-fa="open">${ic("folder")} Map openen</button>
+    <button class="btn" data-fa="sub">${ic("plus")} Submap maken</button>
+    <button class="btn" data-fa="ren">${ic("edit")} Naam wijzigen</button>
+    <button class="btn danger" data-fa="del">${ic("trash")} Map verwijderen</button></div></div></div>`);
+  $("#modal .dt-acts").onclick = async e => {
+    const a = e.target.closest("[data-fa]")?.dataset.fa; if (!a) return;
+    if (a === "open") { closeModal(); S.folder = f.id; renderMain(); $("#main").scrollTop = 0; }
+    if (a === "sub") { closeModal(); newFolder(f.cat, f.id); }
+    if (a === "ren") { const v = await folderDialog({ title: "Naam wijzigen", value: f.name, ok: "Bewaren" }); if (v) { f.name = v; await saveSettings(); renderMain(); toast("Naam gewijzigd"); } }
+    if (a === "del") {
+      const n = countIn(f.cat, f.id), parentName = f.parent ? folderOf(f.parent).name : c.name;
+      if (await confirmBox("Map verwijderen?", `De map “${f.name}” verdwijnt.${n ? ` De ${n} document${n === 1 ? "" : "en"} en eventuele submappen gaan naar ${parentName}. Er wordt niets gewist.` : ""}`, "Map verwijderen")) {
+        folders().filter(x => x.parent === f.id).forEach(x => x.parent = f.parent || null);
+        for (const d of S.docs.filter(d => d.folder === f.id)) { d.folder = f.parent || null; await DB.put("docs", d); }
+        S.set.folders = folders().filter(x => x.id !== f.id); if (S.folder === f.id) S.folder = f.parent || null;
+        await saveSettings(); await reload(); toast("Map verwijderd");
+      }
+    }
+  };
+}
+/* ---------- PIN keypad (no system keyboard needed) ---------- */
+function pinPad({ title, sub, check }) {
+  // check(v): returns true (accept), or an error string to show and retry
+  return new Promise(res => {
+    let v = ""; const LEN = 4;
+    openModal(`<div class="sheet sm"><div class="hd"><h3 style="text-align:center">${esc(title)}</h3></div><div class="bd">
+      <p class="pinsub">${esc(sub)}</p><div class="pdots" id="pd">${"<i></i>".repeat(LEN)}</div><div class="pinmsg" id="pm"></div>
+      <div class="keypad">${[1, 2, 3, 4, 5, 6, 7, 8, 9].map(n => `<button data-k="${n}">${n}</button>`).join("")}
+      <button class="txt" data-k="x">Annuleren</button><button data-k="0">0</button><button class="txt" data-k="b" aria-label="Wissen">Wissen</button></div></div></div>`);
+    const pd = $("#pd"), pm = $("#pm");
+    const paint = () => $$("i", pd).forEach((d, i) => d.classList.toggle("on", i < v.length));
+    const finish = r => { removeEventListener("keydown", kb, true); closeModal(); res(r); };
+    const press = async k => {
+      if (k === "x") return finish(null);
+      if (k === "b") { v = v.slice(0, -1); paint(); return; }
+      if (v.length >= LEN) return;
+      v += k; pm.textContent = ""; pd.classList.remove("err"); paint();
+      if (v.length === LEN) {
+        await new Promise(r => setTimeout(r, 140));
+        const ok = check ? await check(v) : true;
+        if (ok === true) return finish(v);
+        pm.textContent = ok || "Probeer opnieuw"; pd.classList.add("err", "shake");
+        setTimeout(() => { pd.classList.remove("shake"); v = ""; paint(); }, 420);
+      }
+    };
+    $("#modal .keypad").addEventListener("click", e => { const b = e.target.closest("[data-k]"); if (b) press(b.dataset.k); });
+    const kb = e => { if (/^[0-9]$/.test(e.key)) { e.preventDefault(); press(e.key); } else if (e.key === "Backspace") press("b"); else if (e.key === "Escape") press("x"); };
+    addEventListener("keydown", kb, true);
+  });
+}
+async function setPinFlow() {
+  const first = await pinPad({ title: "Nieuwe pincode", sub: "Kies 4 cijfers om de klantmodus te vergrendelen." });
+  if (!first) return false;
+  const again = await pinPad({ title: "Herhaal je pincode", sub: "Geef dezelfde 4 cijfers nog eens in.", check: v => v === first || "Komt niet overeen, probeer opnieuw" });
+  if (!again) return false;
+  S.set.pin = first; await saveSettings(); toast("Pincode ingesteld"); return true;
+}
+function setClient(on) {
+  S.client = on; if (on && (S.view === "settings" || S.view === "presedit")) { S.view = "library"; S.cat = null; S.folder = null; }
+  document.body.classList.toggle("client", on); try { sessionStorage.setItem("client", on ? "1" : ""); } catch (e) { }
+  render(); toast(on ? "Klantmodus staat aan" : "Klantmodus staat uit");
 }
 async function docFile(d) { const b = await DB.get("blobs", d.id); return new File([b], d.name || (d.title + ".pdf"), { type: d.mime }); }
 async function shareDoc(d) {
@@ -766,7 +992,7 @@ function bindPresEdit() {
 }
 function pickDocs(selected, title, onDone) {
   const sel = new Set(selected);
-  const row = d => `<label class="pick"><input type="checkbox" value="${d.id}" ${sel.has(d.id) ? "checked" : ""}><div class="mini" style="background-image:url('${d.thumb || ""}')"></div><div class="it"><b>${esc(d.title)}</b><span>${d.lang}, ${kindLabel(d)}</span></div></label>`;
+  const row = d => `<label class="pick"><input type="checkbox" value="${d.id}" ${sel.has(d.id) ? "checked" : ""}><div class="mini" style="background-image:url('${d.thumb || ""}')"></div><div class="it"><b>${esc(d.title)}</b><span>${folderOf(d.folder) ? esc(folderPath(d.folder).map(f => f.name).join(" › ")) + ", " : ""}${d.lang}, ${kindLabel(d)}</span></div></label>`;
   const groups = S.set.categories.map(c => { const ds = S.docs.filter(d => d.category === c.id); return ds.length ? `<div class="pgroup" style="--c:${c.color}">${esc(c.name)}</div>` + ds.map(row).join("") : ""; }).join("")
     + (() => { const o = S.docs.filter(d => !S.set.categories.some(c => c.id === d.category)); return o.length ? `<div class="pgroup" style="--c:#8592A0">Overig</div>` + o.map(row).join("") : ""; })();
   openModal(`<div class="sheet"><div class="hd"><h3>${title}</h3></div><div class="bd">${S.docs.length ? groups : "<p style='color:var(--steel)'>Je bibliotheek is nog leeg.</p>"}</div>
@@ -818,7 +1044,8 @@ function viewSettings() {
     <button class="ib" data-cmv="${i}:-1" aria-label="Omhoog" ${i === 0 ? "disabled style='opacity:.25'" : ""}>${ic("up")}</button><button class="ib" data-cdel="${i}" aria-label="Verwijderen">${ic("trash")}</button></div>`).join("")}</div>
     <button class="btn sm" data-act="addcat" style="margin-top:12px">${ic("plus")} Categorie toevoegen</button></div>
   <div class="panel"><h3>Klantmodus</h3><p class="h">Verbergt toevoegen, bewerken, verwijderen en instellingen, zodat je de iPad met een gerust hart doorgeeft. Met een pincode kan de klant de modus niet zelf uitzetten. Je zet hem aan met het slotje bovenaan.</p>
-    <label class="f">Pincode (optioneel)<input id="sPin" inputmode="numeric" maxlength="6" value="${esc(s.pin)}" placeholder="Geen pincode"></label></div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center"><span class="tag" style="height:30px;padding:0 12px;font-size:13px">${s.pin ? "Pincode ingesteld" : "Geen pincode"}</span>
+    <button class="btn sm" data-act="setpin">${ic("lock")} ${s.pin ? "Pincode wijzigen" : "Pincode instellen"}</button>${s.pin ? `<button class="btn sm ghost danger" data-act="nopin">Pincode verwijderen</button>` : ""}</div></div>
   <div class="panel"><h3>Back-up en overzetten</h3><p class="h">Bewaar alles (documenten, categorieën en presentaties) als één .zip in Bestanden of iCloud Drive, of zet je bibliotheek over naar een andere iPad.</p>
     <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn sm" data-act="export">${ic("download")} Back-up maken</button><button class="btn sm" data-act="restore">${ic("upload")} Back-up terugzetten</button>
     <button class="btn sm" data-act="persist">${ic("lock")} Opslag beveiligen</button>${DEMO ? `<button class="btn sm" data-act="demo">Voorbeelden laden</button>` : ""}<button class="btn sm ghost danger" data-act="wipe">${ic("trash")} Alles wissen</button></div>
@@ -831,7 +1058,6 @@ function bindSettings() {
   const bind = (id, fn) => { const el = $("#" + id); el.onchange = async () => { fn(el.value); await saveSettings(); }; };
   bind("sCo", v => s.company = v); bind("sTg", v => s.tagline = v);
   bind("cN", v => s.contact.name = v); bind("cR", v => s.contact.role = v); bind("cP", v => s.contact.phone = v); bind("cE", v => s.contact.email = v); bind("cW", v => s.contact.web = v);
-  bind("sPin", v => s.pin = v.replace(/\D/g, ""));
   $("#catList").onchange = async e => { const r = e.target.closest(".catrow"); if (!r) return; const k = s.categories[+r.dataset.i]; k.color = $(".cc", r).value; k.name = $(".cn", r).value; k.desc = $(".cd", r).value; await saveSettings(); };
   (async () => {
     try { const p = await navigator.storage.persisted(); $("#persistInfo").textContent = p ? "Opslag is beveiligd: iPadOS ruimt deze documenten niet automatisch op." : "Zet de app eerst op je beginscherm en tik dan op Opslag beveiligen."; } catch (e) { }
@@ -893,6 +1119,7 @@ async function restoreBackup(file) {
     for (const p of meta.presentations) await DB.put("presentations", p);
     const ids = new Set(S.set.categories.map(c => c.id)); meta.settings.categories.forEach(c => { if (!ids.has(c.id)) S.set.categories.push(c); });
     if (!S.set.logo && meta.settings.logo) S.set.logo = meta.settings.logo;
+    const fids = new Set(folders().map(f => f.id)); (meta.settings.folders || []).forEach(f => { if (!fids.has(f.id)) folders().push(f); });
     await saveSettings(); await reload(); toast("Back-up teruggezet");
   } catch (e) { toast("Terugzetten mislukt: " + e.message); }
 }
@@ -908,23 +1135,14 @@ function confirmBox(title, msg, ok = "OK") {
     $("#cfN").onclick = () => { closeModal(); res(false); }; $("#cfY").onclick = () => { closeModal(); res(true); };
   });
 }
-function pinBox() {
-  return new Promise(res => {
-    openModal(`<div class="sheet sm"><div class="hd"><h3>Klantmodus uitzetten</h3></div><div class="bd"><p style="margin:0;color:var(--steel)">Geef je pincode in.</p>
-      <div class="pin"><input id="pinIn" type="password" inputmode="numeric" maxlength="6" autocomplete="off" aria-label="Pincode"></div></div>
-      <div class="ft"><button class="btn ghost" id="pnN">Annuleren</button><button class="btn ink" id="pnY">Uitzetten</button></div></div>`);
-    setTimeout(() => $("#pinIn").focus(), 60);
-    const ok = () => { const v = $("#pinIn").value; closeModal(); res(v === S.set.pin); };
-    $("#pnY").onclick = ok; $("#pinIn").onkeydown = e => e.key === "Enter" && ok(); $("#pnN").onclick = () => { closeModal(); res(null); };
-  });
-}
-
 /* ================= global events ================= */
 document.addEventListener("click", async e => {
-  const t = e.target.closest("[data-nav],[data-cat],[data-lang],[data-act],[data-open],[data-fav],[data-more],[data-play],[data-pedit],[data-pdel],[data-mv],[data-rm],[data-cdel],[data-cmv],[data-accent],[data-theme-set]");
+  const t = e.target.closest("[data-nav],[data-cat],[data-lang],[data-act],[data-open],[data-fav],[data-more],[data-play],[data-pedit],[data-pdel],[data-mv],[data-rm],[data-cdel],[data-cmv],[data-accent],[data-theme-set],[data-folder],[data-fmenu]");
   if (!t || t.closest("#viewer")) return; const ds = t.dataset;
   if (ds.nav) go2(ds.nav);
-  else if (ds.cat !== undefined) { S.cat = ds.cat || null; S.q = ""; renderMain(); $("#main").scrollTop = 0; }
+  else if (ds.folder !== undefined) { S.folder = ds.folder || null; S.q = ""; renderMain(); $("#main").scrollTop = 0; }
+  else if (ds.fmenu) folderMenu(ds.fmenu);
+  else if (ds.cat !== undefined) { S.cat = ds.cat || null; S.folder = null; S.q = ""; renderMain(); $("#main").scrollTop = 0; }
   else if (ds.lang) { S.lang = ds.lang; $$(".seg [data-lang]").forEach(c => c.classList.toggle("on", c.dataset.lang === S.lang)); renderGrid(); }
   else if (ds.open) {
     const inShelf = t.closest(".shelf"); const list = inShelf ? $$(".shelf [data-open].th", $("#main")).map(b => b.dataset.open) : filtered().map(d => d.id);
@@ -937,13 +1155,16 @@ document.addEventListener("click", async e => {
   else if (ds.pdel) { const p = S.pres.find(x => x.id === ds.pdel); if (await confirmBox("Presentatie verwijderen?", `“${p.name}” wordt verwijderd. De documenten zelf blijven in je bibliotheek.`, "Verwijderen")) { await DB.del("presentations", p.id); S.pres = S.pres.filter(x => x.id !== p.id); render(); } }
   else if (ds.mv) { const [i, dir] = ds.mv.split(":").map(Number); const it = S.presEdit.items.filter(x => S.docs.some(d => d.id === x)); [it[i], it[i + dir]] = [it[i + dir], it[i]]; S.presEdit.items = it; await savePres(S.presEdit); renderMain(); }
   else if (ds.rm) { const it = S.presEdit.items.filter(x => S.docs.some(d => d.id === x)); it.splice(+ds.rm, 1); S.presEdit.items = it; await savePres(S.presEdit); renderMain(); }
-  else if (ds.cdel) { const k = S.set.categories[+ds.cdel]; const n = S.docs.filter(d => d.category === k.id).length; if (await confirmBox("Categorie verwijderen?", `“${k.name}” wordt verwijderd.${n ? ` ${n} document${n === 1 ? "" : "en"} komen onder Overig.` : ""}`, "Verwijderen")) { S.set.categories.splice(+ds.cdel, 1); await saveSettings(); renderMain(); } }
+  else if (ds.cdel) { const k = S.set.categories[+ds.cdel]; const n = S.docs.filter(d => d.category === k.id).length; if (await confirmBox("Categorie verwijderen?", `“${k.name}” wordt verwijderd.${n ? ` ${n} document${n === 1 ? "" : "en"} komen onder Overig.` : ""}`, "Verwijderen")) { S.set.categories.splice(+ds.cdel, 1); S.set.folders = folders().filter(f => f.cat !== k.id); await saveSettings(); renderMain(); } }
   else if (ds.cmv) { const [i, dir] = ds.cmv.split(":").map(Number); const c = S.set.categories; if (i + dir >= 0 && i + dir < c.length) { [c[i], c[i + dir]] = [c[i + dir], c[i]]; await saveSettings(); renderMain(); } }
   else if (ds.accent) { S.set.accent = ds.accent; await saveSettings(); $$("[data-accent]").forEach(b => b.classList.toggle("on", b === t)); }
   else if (ds.themeSet) { S.set.theme = ds.themeSet; await saveSettings(); $$("[data-theme-set]").forEach(b => b.classList.toggle("on", b === t)); }
   else if (ds.act) {
     const a = ds.act;
     if (a === "import") $("#fileIn").click();
+    if (a === "newfolder") newFolder(S.cat, S.folder);
+    if (a === "setpin") { await setPinFlow(); renderMain(); }
+    if (a === "nopin") { if (await pinPad({ title: "Pincode verwijderen", sub: "Geef je huidige pincode in.", check: v => v === S.set.pin || "Verkeerde pincode" })) { S.set.pin = ""; await saveSettings(); renderMain(); toast("Pincode verwijderd"); } }
     if (a === "demo") loadDemo();
     if (a === "newpres") { S.presEdit = newPres(); await savePres(S.presEdit); renderTabs(); go2("presedit"); setTimeout(() => $("#pN")?.select(), 50); }
     if (a === "pdocs") pickDocs(S.presEdit.items.filter(x => S.docs.some(d => d.id === x)), "Documenten kiezen", async ids => { S.presEdit.items = ids; await savePres(S.presEdit); renderMain(); });
@@ -965,9 +1186,20 @@ $("#logoIn").onchange = async e => {
   S.set.logo = cv.toDataURL("image/png"); URL.revokeObjectURL(u); e.target.value = ""; await saveSettings(); renderMain();
 };
 $("#clientBtn").onclick = async () => {
-  if (!S.client) { S.client = true; if (S.view === "settings" || S.view === "presedit") S.view = "library"; toast("Klantmodus staat aan"); }
-  else { if (S.set.pin) { const ok = await pinBox(); if (ok === null) return; if (!ok) return toast("Verkeerde pincode"); } S.client = false; toast("Klantmodus staat uit"); }
-  document.body.classList.toggle("client", S.client); try { sessionStorage.setItem("client", S.client ? "1" : ""); } catch (e) { } render();
+  if (!S.client) {
+    if (!S.set.pin) {
+      const choice = await new Promise(res => {
+        openModal(`<div class="sheet sm"><div class="hd"><h3>Klantmodus aanzetten</h3></div><div class="bd"><p style="margin:0;color:var(--ink2)">Met een pincode kan een klant de klantmodus niet zelf uitzetten. Je stelt hem één keer in.</p></div>
+          <div class="ft"><button class="btn ghost" id="cmN">Zonder pincode</button><button class="btn primary" id="cmY">${ic("lock")} Pincode instellen</button></div></div>`);
+        $("#cmN").onclick = () => { closeModal(); res("no"); }; $("#cmY").onclick = () => { closeModal(); res("pin"); };
+      });
+      if (choice === "pin" && !(await setPinFlow())) return;
+    }
+    setClient(true);
+  } else {
+    if (S.set.pin) { const ok = await pinPad({ title: "Klantmodus uitzetten", sub: "Geef je pincode in.", check: v => v === S.set.pin || "Verkeerde pincode" }); if (!ok) return; }
+    setClient(false);
+  }
 };
 addEventListener("resize", () => movePill(false));
 matchMedia("(prefers-color-scheme: light)").addEventListener?.("change", () => S.set.theme === "auto" && applyBrand());
@@ -1056,6 +1288,7 @@ function updateChrome() {
   prog.innerHTML = V.items.map((_, i) => `<i class="${i === V.idx ? "on" : ""}"></i>`).join("");
   $$(".pdfonly").forEach(b => b.hidden = !pdf);
   $('.vb[data-v="share"]').hidden = !d;
+  $('.vb[data-v="capture"]').hidden = !d || !["pdf", "image", "video"].includes(d.kind);
   $('.vb[data-v="prev"]').disabled = V.idx === 0 && V.page === 1;
   $('.vb[data-v="next"]').disabled = V.idx === V.items.length - 1 && V.page >= V.pages;
   $$("#vThumbs button").forEach(b => b.classList.toggle("on", +b.dataset.p === V.page));
@@ -1094,6 +1327,7 @@ viewer.addEventListener("click", async e => {
   if (a === "next") go(1); if (a === "prev") go(-1);
   if (a === "zoomin") setZoom(V.zoom * 1.5); if (a === "zoomout") setZoom(V.zoom / 1.5);
   if (a === "share" && V.doc) shareDoc(V.doc);
+  if (a === "capture") { const cv = captureCurrent(); if (!cv) return toast("Hier kan geen screenshot van gemaakt worden"); openAnnot(cv, { title: V.doc.title, page: V.doc.kind === "pdf" ? V.page : 0, category: V.doc.category, folder: docFolder(V.doc), lang: V.doc.lang }); }
   if (a === "ext" && V.doc) openExternal(V.doc);
   if (a === "thumbs") { V.thumbs = !V.thumbs; b.classList.toggle("on", V.thumbs); $("#vThumbs").hidden = !V.thumbs; if (V.thumbs) buildThumbs(); }
   if (a === "pen") { V.pen = !V.pen; b.classList.toggle("on", V.pen); if (!V.pen) $$("canvas.ink", stage).forEach(c => c.getContext("2d").clearRect(0, 0, c.width, c.height)); }
@@ -1126,12 +1360,170 @@ stage.addEventListener("pointerup", e => {
 });
 viewer.addEventListener("mousemove", () => { if (matchMedia("(hover:hover)").matches) wake(); });
 addEventListener("keydown", e => {
+  if (!$("#annot").hidden) { if (e.key === "Escape" && $("#modal").hidden) closeAnnot(); if ((e.metaKey || e.ctrlKey) && e.key === "z") { e.preventDefault(); undoAnnot(); } return; }
+  if (!$("#modal").hidden) return;
   if (viewer.hidden) { if (e.key === "Escape" && !$("#modal").hidden) closeModal(); return; }
   if (["ArrowRight", "PageDown", " ", "ArrowDown"].includes(e.key)) { e.preventDefault(); go(1); }
   if (["ArrowLeft", "PageUp", "ArrowUp"].includes(e.key)) { e.preventDefault(); go(-1); }
   if (e.key === "Escape") closeViewer();
 });
 let rT; addEventListener("resize", () => { clearTimeout(rT); rT = setTimeout(() => { if (!viewer.hidden && V.pdf) renderPage(); }, 150); });
+
+/* ================= screenshot + annotations ================= */
+function captureCurrent() {
+  const d = V.doc; if (!d) return null; const c = document.createElement("canvas"), x = c.getContext("2d");
+  if (d.kind === "pdf") {
+    const pc = $(".vpage canvas:not(.ink)", stage), ink = $(".vpage canvas.ink", stage); if (!pc) return null;
+    c.width = pc.width; c.height = pc.height; x.fillStyle = "#fff"; x.fillRect(0, 0, c.width, c.height); x.drawImage(pc, 0, 0);
+    if (ink) x.drawImage(ink, 0, 0, c.width, c.height); return c;
+  }
+  const el = d.kind === "image" ? $("img.vimg", stage) : $("video", stage); if (!el) return null;
+  const w = el.naturalWidth || el.videoWidth, h = el.naturalHeight || el.videoHeight; if (!w) return null;
+  const sc = Math.min(1, 4000 / Math.max(w, h)); c.width = Math.round(w * sc); c.height = Math.round(h * sc); x.drawImage(el, 0, 0, c.width, c.height); return c;
+}
+const ACOLORS = ["#FF3B30", "#FF9500", "#FFD60A", "#34C759", "#0A84FF", "#161B21", "#FFFFFF"];
+const ATOOLS = [["crop", "crop", "Uitsnede"], ["pen", "pen", "Pen"], ["marker", "marker", "Markeerstift"], ["rect", "rect", "Kader"], ["ellipse", "circle", "Cirkel"], ["arrow", "arrow", "Pijl"], ["text", "text", "Tekst"]];
+const E = { base: null, shapes: [], hist: [], tool: "pen", color: "#FF3B30", size: 1, cur: null, crop: null, meta: null, file: null };
+const acv = $("#acv"), actx = acv.getContext("2d");
+function openAnnot(canvas, meta) {
+  Object.assign(E, { base: canvas, shapes: [], hist: [], cur: null, crop: null, meta, tool: "pen" });
+  $("#aSub").textContent = meta.title + (meta.page ? `, pagina ${meta.page}` : "");
+  $("#annot").hidden = false; renderDock(); layoutAnnot(); redrawAnnot();
+  hint("Teken met je vinger of Apple Pencil. Kies Uitsnede voor een deel van de pagina.");
+}
+function closeAnnot() { $("#annot").hidden = true; $("#aCropBar").hidden = true; E.base = null; }
+let hintT; function hint(t) { const h = $("#aHint"); h.textContent = t; h.style.opacity = 1; clearTimeout(hintT); hintT = setTimeout(() => h.style.opacity = 0, 3200); }
+function renderDock() {
+  $("#aDock").innerHTML = ATOOLS.map(([t, i, l]) => `<button class="vb ${E.tool === t ? "on" : ""}" data-tool="${t}" title="${l}" aria-label="${l}">${ic(i)}</button>`).join("")
+    + `<span class="vsep"></span>` + ACOLORS.map(c => `<button class="sw ${E.color === c ? "on" : ""}" style="--s:${c}" data-col="${c}" aria-label="Kleur"></button>`).join("")
+    + `<span class="vsep"></span>` + [0, 1, 2].map(i => `<button class="sz ${E.size === i ? "on" : ""}" data-sz="${i}" aria-label="Dikte ${i + 1}"><i style="width:${6 + i * 5}px;height:${6 + i * 5}px"></i></button>`).join("");
+}
+function layoutAnnot() {
+  if (!E.base) return; const st = $("#astage"); const W = E.base.width, H = E.base.height;
+  acv.width = W; acv.height = H;
+  const maxW = st.clientWidth - 36, maxH = st.clientHeight - 110; const sc = Math.min(maxW / W, maxH / H);
+  acv.style.width = Math.floor(W * sc) + "px"; acv.style.height = Math.floor(H * sc) + "px";
+}
+const unit = () => Math.max(E.base.width, E.base.height) / 520;
+const widthFor = (tool, size) => unit() * [1.6, 3, 5.5][size] * (tool === "marker" ? 4.5 : 1);
+function drawShape(x, s) {
+  x.save(); x.strokeStyle = s.c; x.fillStyle = s.c; x.lineWidth = s.w; x.lineCap = "round"; x.lineJoin = "round"; x.globalAlpha = s.t === "marker" ? .38 : 1;
+  if (s.t === "pen" || s.t === "marker") {
+    const p = s.pts; x.beginPath(); x.moveTo(p[0][0], p[0][1]);
+    if (p.length < 3) { x.lineTo(p[p.length - 1][0] + .01, p[p.length - 1][1]); }
+    for (let i = 1; i < p.length - 1; i++) { const mx = (p[i][0] + p[i + 1][0]) / 2, my = (p[i][1] + p[i + 1][1]) / 2; x.quadraticCurveTo(p[i][0], p[i][1], mx, my); }
+    if (p.length >= 3) x.lineTo(p[p.length - 1][0], p[p.length - 1][1]);
+    x.stroke();
+  } else if (s.t === "rect") { x.beginPath(); x.roundRect ? x.roundRect(s.x, s.y, s.w2, s.h2, s.w) : x.rect(s.x, s.y, s.w2, s.h2); x.stroke(); }
+  else if (s.t === "ellipse") { x.beginPath(); x.ellipse(s.x + s.w2 / 2, s.y + s.h2 / 2, Math.abs(s.w2 / 2), Math.abs(s.h2 / 2), 0, 0, Math.PI * 2); x.stroke(); }
+  else if (s.t === "arrow") {
+    const a = Math.atan2(s.y2 - s.y1, s.x2 - s.x1), hl = s.w * 4.2;
+    x.beginPath(); x.moveTo(s.x1, s.y1); x.lineTo(s.x2 - Math.cos(a) * hl * .6, s.y2 - Math.sin(a) * hl * .6); x.stroke();
+    x.beginPath(); x.moveTo(s.x2, s.y2); x.lineTo(s.x2 - hl * Math.cos(a - .45), s.y2 - hl * Math.sin(a - .45)); x.lineTo(s.x2 - hl * Math.cos(a + .45), s.y2 - hl * Math.sin(a + .45)); x.closePath(); x.fill();
+  } else if (s.t === "text") {
+    const fs = s.fs, pad = fs * .45, lines = s.text.split("\n"); x.font = `650 ${fs}px Archivo, -apple-system, sans-serif`;
+    const tw = Math.max(...lines.map(l => x.measureText(l).width)), th = lines.length * fs * 1.25;
+    x.beginPath(); x.roundRect ? x.roundRect(s.x, s.y, tw + pad * 2, th + pad * 1.6, fs * .35) : x.rect(s.x, s.y, tw + pad * 2, th + pad * 1.6); x.fill();
+    const light = ["#FFD60A", "#FFFFFF"].includes(s.c); x.fillStyle = light ? "#161B21" : "#FFFFFF"; x.textBaseline = "top";
+    lines.forEach((l, i) => x.fillText(l, s.x + pad, s.y + pad * .8 + i * fs * 1.25));
+  }
+  x.restore();
+}
+function redrawAnnot() {
+  if (!E.base) return; actx.clearRect(0, 0, acv.width, acv.height); actx.drawImage(E.base, 0, 0);
+  E.shapes.forEach(s => drawShape(actx, s)); if (E.cur) drawShape(actx, E.cur);
+  const cb = $("#acrop");
+  if (E.crop && E.tool === "crop") {
+    const r = normRect(E.crop), k = acv.clientWidth / acv.width;
+    Object.assign(cb.style, { left: r.x * k + "px", top: r.y * k + "px", width: r.w * k + "px", height: r.h * k + "px" }); cb.hidden = false;
+  } else cb.hidden = true;
+}
+const normRect = c => ({ x: Math.min(c.x1, c.x2), y: Math.min(c.y1, c.y2), w: Math.abs(c.x2 - c.x1), h: Math.abs(c.y2 - c.y1) });
+function snapshot() { E.hist.push({ base: E.base, shapes: E.shapes.slice() }); if (E.hist.length > 40) E.hist.shift(); }
+function undoAnnot() { const h = E.hist.pop(); if (!h) return hint("Niets meer om ongedaan te maken"); const resize = h.base !== E.base; E.base = h.base; E.shapes = h.shapes; if (resize) layoutAnnot(); redrawAnnot(); }
+function flatten(rect) {
+  const r = rect || { x: 0, y: 0, w: E.base.width, h: E.base.height }; const c = document.createElement("canvas");
+  c.width = Math.max(1, Math.round(r.w)); c.height = Math.max(1, Math.round(r.h)); const x = c.getContext("2d");
+  x.translate(-r.x, -r.y); x.drawImage(E.base, 0, 0); E.shapes.forEach(s => drawShape(x, s)); return c;
+}
+function setTool(t) {
+  E.tool = t; E.crop = null; $("#aCropBar").hidden = t !== "crop"; $('[data-e="cropok"]').disabled = true; renderDock(); redrawAnnot();
+  if (t === "text") hint("Tik op de plek waar de tekst moet komen.");
+}
+const aPt = e => { const r = acv.getBoundingClientRect(); return [(e.clientX - r.left) * acv.width / r.width, (e.clientY - r.top) * acv.height / r.height]; };
+acv.addEventListener("pointerdown", async e => {
+  if (!E.base) return; e.preventDefault(); const [x, y] = aPt(e); const w = widthFor(E.tool, E.size);
+  if (E.tool === "text") { const t = await askText(); if (t) { snapshot(); E.shapes.push({ t: "text", x, y, text: t, c: E.color, fs: unit() * [9, 13, 19][E.size], w }); redrawAnnot(); } return; }
+  acv.setPointerCapture(e.pointerId);
+  if (E.tool === "crop") { E.crop = { x1: x, y1: y, x2: x, y2: y }; redrawAnnot(); return; }
+  if (E.tool === "pen" || E.tool === "marker") E.cur = { t: E.tool, pts: [[x, y]], c: E.color, w };
+  else if (E.tool === "arrow") E.cur = { t: "arrow", x1: x, y1: y, x2: x, y2: y, c: E.color, w };
+  else E.cur = { t: E.tool, x, y, w2: 0, h2: 0, c: E.color, w };
+  redrawAnnot();
+});
+acv.addEventListener("pointermove", e => {
+  if (!E.base) return; const [x, y] = aPt(e);
+  if (E.tool === "crop" && E.crop && e.buttons) { E.crop.x2 = Math.max(0, Math.min(acv.width, x)); E.crop.y2 = Math.max(0, Math.min(acv.height, y)); redrawAnnot(); return; }
+  const s = E.cur; if (!s) return;
+  if (s.pts) { const l = s.pts[s.pts.length - 1]; if (Math.hypot(x - l[0], y - l[1]) > unit() * .6) s.pts.push([x, y]); }
+  else if (s.t === "arrow") { s.x2 = x; s.y2 = y; }
+  else { s.w2 = x - s.x; s.h2 = y - s.y; if (e.shiftKey) { const m = Math.max(Math.abs(s.w2), Math.abs(s.h2)); s.w2 = Math.sign(s.w2 || 1) * m; s.h2 = Math.sign(s.h2 || 1) * m; } }
+  redrawAnnot();
+});
+const endStroke = () => {
+  if (E.tool === "crop" && E.crop) { const r = normRect(E.crop); $('[data-e="cropok"]').disabled = r.w < 20 || r.h < 20; return; }
+  const s = E.cur; E.cur = null; if (!s) return;
+  const tiny = s.pts ? false : s.t === "arrow" ? Math.hypot(s.x2 - s.x1, s.y2 - s.y1) < unit() * 3 : Math.abs(s.w2) < unit() * 3 && Math.abs(s.h2) < unit() * 3;
+  if (!tiny) { if (s.w2 < 0) { s.x += s.w2; s.w2 = -s.w2; } if (s.h2 < 0) { s.y += s.h2; s.h2 = -s.h2; } snapshot(); E.shapes.push(s); }
+  redrawAnnot();
+};
+acv.addEventListener("pointerup", endStroke); acv.addEventListener("pointercancel", endStroke);
+function askText() {
+  return new Promise(res => {
+    openModal(`<div class="sheet sm"><div class="hd"><h3>Opmerking toevoegen</h3></div><div class="bd">
+      <label class="f">Tekst op de screenshot<textarea id="atx" class="inp" style="height:110px;padding:12px 14px" placeholder="Bijvoorbeeld: deze uitvoering voorzien op niveau +2"></textarea></label></div>
+      <div class="ft"><button class="btn ghost" id="atN">Annuleren</button><button class="btn primary" id="atY">Toevoegen</button></div></div>`);
+    setTimeout(() => $("#atx").focus(), 80);
+    $("#atN").onclick = () => { closeModal(); res(null); }; $("#atY").onclick = () => { const v = $("#atx").value.trim(); closeModal(); res(v || null); };
+  });
+}
+const toBlob = (c, type = "image/jpeg", q = .92) => new Promise(r => c.toBlob(r, type, q));
+function annotName() { const m = E.meta; return `${m.title}${m.page ? ` p${m.page}` : ""} notitie ${new Date().toISOString().slice(0, 10)}`.replace(/[\\/:*?"<>|]+/g, "-"); }
+async function annotFile() { const c = flatten(); const b = await toBlob(c); return new File([b], annotName() + ".jpg", { type: "image/jpeg" }); }
+async function shareAnnot() {
+  const f = await annotFile(); const url = URL.createObjectURL(f); const m = E.meta;
+  const subject = `${m.title}${m.page ? `, pagina ${m.page}` : ""}`;
+  openModal(`<div class="sheet"><div class="hd"><h3>Mailen of delen</h3><button class="ib" data-close aria-label="Sluiten">${ic("x")}</button></div><div class="bd">
+    <div class="sharepv"><img src="${url}" alt=""></div>
+    <label class="f">Bericht bij de afbeelding<textarea id="shTx" class="inp" style="height:110px;padding:12px 14px">${esc(`Beste,\n\nIn bijlage een notitie bij ${subject}.\n\nMet vriendelijke groeten,\n${S.set.contact.name || S.set.company}`)}</textarea></label>
+    <p style="color:var(--steel);font-size:13.5px;margin:12px 0 0">Kies daarna Mail in het deelmenu van je iPad. De afbeelding wordt als bijlage toegevoegd. Je kunt ook AirDrop, WhatsApp of Bewaar in Bestanden kiezen.</p></div>
+    <div class="ft"><button class="btn admin" id="shSave">${ic("download")} Ook bewaren in bibliotheek</button><button class="btn primary" id="shGo">${ic("mail")} Mailen of delen</button></div></div>`);
+  $("#shSave").onclick = async () => { await saveAnnot(f); $("#shSave").disabled = true; };
+  $("#shGo").onclick = async () => {
+    const text = $("#shTx").value;
+    if (navigator.canShare && navigator.canShare({ files: [f] })) {
+      try { await navigator.share({ files: [f], title: subject, text }); closeModal(); toast("Gedeeld"); } catch (e) { if (e.name !== "AbortError") toast("Delen lukte niet: " + e.message); }
+    } else { const a = document.createElement("a"); a.href = url; a.download = f.name; a.click(); toast("Delen kan hier niet, de afbeelding is gedownload"); }
+  };
+}
+async function saveAnnot(f) {
+  f = f || await annotFile(); const m = E.meta;
+  await addDoc(f, { title: `Notitie: ${m.title}${m.page ? `, p. ${m.page}` : ""}`, category: m.category, folder: m.folder, lang: m.lang, desc: "Screenshot met notities" });
+  S.docs = await DB.all("docs"); toast(`Bewaard in ${locLabel(m.category, m.folder)}`);
+}
+$("#annot").addEventListener("click", async e => {
+  const t = e.target.closest("[data-e],[data-tool],[data-col],[data-sz]"); if (!t) return; const ds = t.dataset;
+  if (ds.tool) setTool(ds.tool);
+  else if (ds.col) { E.color = ds.col; renderDock(); }
+  else if (ds.sz) { E.size = +ds.sz; renderDock(); }
+  else if (ds.e === "close") { if (E.shapes.length || E.hist.length) { if (!await confirmBox("Screenshot sluiten?", "Je notities op deze screenshot gaan verloren als je ze niet bewaart of deelt.", "Sluiten")) return; } closeAnnot(); }
+  else if (ds.e === "undo") undoAnnot();
+  else if (ds.e === "save") saveAnnot();
+  else if (ds.e === "share") shareAnnot();
+  else if (ds.e === "cropno") setTool("pen");
+  else if (ds.e === "cropok" && E.crop) { const r = normRect(E.crop); snapshot(); E.base = flatten(r); E.shapes = []; E.crop = null; layoutAnnot(); setTool("pen"); hint("Bijgesneden. Ongedaan maken kan altijd."); }
+});
+addEventListener("resize", () => { if (!$("#annot").hidden) { layoutAnnot(); redrawAnnot(); } });
 
 /* ================= boot ================= */
 let DEMO = false;
@@ -1144,7 +1536,7 @@ async function reload() {
 (async () => {
   try { await DB.open(); } catch (e) { $("#main").innerHTML = `<div class="empty"><h3>Lokale opslag is niet beschikbaar</h3><div>Open de app in Safari en niet in een privévenster.</div></div>`; return; }
   const st = await DB.get("kv", "settings");
-  if (st) S.set = Object.assign(structuredClone(DEFAULT_SETTINGS), st, { contact: Object.assign({}, DEFAULT_SETTINGS.contact, st.contact) });
+  if (st) S.set = Object.assign(structuredClone(DEFAULT_SETTINGS), st, { contact: Object.assign({}, DEFAULT_SETTINGS.contact, st.contact), folders: st.folders || [] });
   applyBrand();
   try { S.client = sessionStorage.getItem("client") === "1"; } catch (e) { } document.body.classList.toggle("client", S.client);
   try { DEMO = (await fetch("demo/manifest.json", { method: "HEAD" })).ok; } catch (e) { }
